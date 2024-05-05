@@ -31,13 +31,13 @@ async def start_menu(message: types.Message,
     )
 
 
-@router.message(lambda message: message.text == "SasaiKudasai")
+@router.message(lambda message: message.text == "Ok")
 async def admin_start_menu(message: types.Message,
                            db=AsyncDatabase()):
     if int(ADMIN_ID) == message.from_user.id:
         await bot.send_message(
             chat_id=message.from_user.id,
-            text="Приветствую вас, мой хозяин"
+            text="Hello"
         )
         users_info = await db.execute_query(query=sql_queries.SELECT_USER, fetch='all')
         await bot.send_message(
@@ -47,5 +47,5 @@ async def admin_start_menu(message: types.Message,
     else:
         await bot.send_message(
             chat_id=message.from_user.id,
-            text="Ты не мой хозяин"
+            text="No"
         )
